@@ -107,3 +107,5 @@ scores <- possibilities %>%
 pangram_check <- word_list %>%
   filter(unique == "aeginrt")
 
+write_csv(scores, "scores.csv")
+
