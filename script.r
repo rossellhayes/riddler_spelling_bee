@@ -2,9 +2,6 @@ library(pacman)
 p_load(here, dplyr, dtplyr, furrr, magrittr, purrr, readr, stringr, tibble, tidyr)
 plan(multiprocess)
 
-# vowels    <- c("a", "e", "i", "o", "u")
-# uncommons <- c("q", "z", "j", "x", "k", "f", "v", "w", "y")
-
 word_list <- read_lines(here("enable1.txt")) %>%
   discard(str_detect, "s") %>%
   discard(~ nchar(.) < 4) %>%
@@ -46,6 +43,8 @@ letter_scores <- letters %>%
 top_letters <- letter_scores %>%
   top_n(16) %>%
   pull(letters)
+
+vowels <- c("a", "e", "i", "o", "u")
 
 honeycombs <- combn(top_letters, 7) %>%
   as_tibble() %>%
